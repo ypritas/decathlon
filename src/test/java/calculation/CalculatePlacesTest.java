@@ -1,23 +1,19 @@
 package calculation;
 
-import FileUtils.CSVReader;
 import data.Athlete;
 import data.Event;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import parser.AthletesParser;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-/**
- * Created by p998tbd on 2016.12.15.
- */
 public class CalculatePlacesTest {
 
-    Map<String, Athlete> result = new LinkedHashMap<>();
+    private Map<String, Athlete> result = new LinkedHashMap<>();
 
     @Before
     public void setUp() throws IOException {

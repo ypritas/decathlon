@@ -16,12 +16,9 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.Map;
 
-/**
- * Created by p998tbd on 2016.12.14.
- */
 public class XMLExporter {
 
-    public static final String STYLE_FILE_NAME = "style.xsl";
+    private static final String STYLE_FILE_NAME = "style.xsl";
 
     public void convertMapToXML(Map<String, Athlete> source, String xmlFileName, Map<String, String> places) throws TransformerException, ParserConfigurationException {
         try {

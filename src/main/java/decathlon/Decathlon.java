@@ -13,9 +13,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by p998tbd on 2016.12.14.
- */
 public class Decathlon {
 
     public static void main(String[] args) throws IOException {
@@ -35,7 +32,7 @@ public class Decathlon {
 
         try {
             File inputDataFile = new File(args[0]);
-            List<List<String>> result = new CSVReader().loadFile(inputDataFile.getAbsolutePath().toString());
+            List<List<String>> result = new CSVReader().loadFile(inputDataFile.getAbsolutePath());
             Map<String, Athlete> calculatedData = new AthletesParser().parseAthletes(result);
             new XMLExporter().convertMapToXML(calculatedData, args[1], CalculatePlaces.getPlaces(calculatedData));
         } catch (IOException|TransformerException|ParserConfigurationException ioe) {

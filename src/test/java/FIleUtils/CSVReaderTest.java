@@ -9,10 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-
-/**
- * Created by p998tbd on 2016.12.13.
- */
 public class CSVReaderTest {
 
     private File file;
@@ -25,9 +21,9 @@ public class CSVReaderTest {
 
     @Test
     public void loadFileTest() throws IOException {
-        List<List<String>> result = new CSVReader().loadFile(file.getAbsolutePath().toString());
+        List<List<String>> result = new CSVReader().loadFile(file.getAbsolutePath());
         Assert.assertFalse(result.isEmpty());
-        Assert.assertTrue(result.size() == 5);
-        Assert.assertTrue(result.get(0).size() == 11);
+        Assert.assertEquals(5, result.size());
+        Assert.assertEquals(11, result.get(0).size());
     }
 }

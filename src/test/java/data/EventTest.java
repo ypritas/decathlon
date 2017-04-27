@@ -3,9 +3,6 @@ package data;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by p998tbd on 2016.12.14.
- */
 public class EventTest {
 
     @Test

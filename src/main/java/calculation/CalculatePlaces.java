@@ -4,14 +4,10 @@ import data.Athlete;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-/**
- * Created by p998tbd on 2016.12.15.
- */
 public class CalculatePlaces {
 
-    public static final int EXCLUDE_LAST_ONE = 1;
+    private static final int EXCLUDE_LAST_ONE = 1;
 
     public static Map<String, String> getPlaces(Map<String,Athlete> source) {
         Map<String, Athlete> sortedMap = new LinkedHashMap<>();

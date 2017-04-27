@@ -3,14 +3,14 @@ package parser;
 import data.Athlete;
 import data.Event;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
-/**
- * Created by p998tbd on 2016.12.13.
- */
-public class AthletesParser implements  DecathlonDataParser {
+public class AthletesParser implements DecathlonDataParser {
 
-    public static final int NAME_POSITION = 0;
+    private static final int NAME_POSITION = 0;
 
     @Override
     public Map<String, Athlete> parseAthletes(List<List<String>> data) {
@@ -38,8 +38,9 @@ public class AthletesParser implements  DecathlonDataParser {
 
     private Integer getTotalPoints(Map<String, String> events) {
         int totalPoints = 0;
-        for (Map.Entry<String, String> entry : events.entrySet())
-        totalPoints+=Event.fromString(entry.getKey()).getPoints(entry.getValue());
+        for (Map.Entry<String, String> entry : events.entrySet()) {
+            totalPoints += Event.fromString(entry.getKey()).getPoints(entry.getValue());
+        }
         return totalPoints;
     }
 }

@@ -1,24 +1,19 @@
 package parser;
 
-import FileUtils.CSVReader;
 import data.Athlete;
 import data.Event;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by p998tbd on 2016.12.13.
- */
 public class AthletesParserTest {
 
-    List<List<String>> data;
+    private List<List<String>> data;
 
     @Before
     public void setUp() throws IOException {
@@ -97,7 +92,7 @@ public class AthletesParserTest {
         Map<String, Athlete> result = new AthletesParser().parseAthletes(data);
         Assert.assertEquals(5, result.size());
         Assert.assertEquals(10, result.get("Siim Susi").getEvents().size());
-        Assert.assertEquals(new Integer(4200), result.get("Siim Susi").getTotalPoints());
+        Assert.assertEquals(4200, result.get("Siim Susi").getTotalPoints().intValue());
         Assert.assertEquals("12.61", result.get("Siim Susi").getEvents().get(Event.EVENT_100M.getName()));
         Assert.assertEquals("5.00", result.get("Siim Susi").getEvents().get(Event.EVENT_LONG_JUMP.getName()));
         Assert.assertEquals("9.22", result.get("Siim Susi").getEvents().get(Event.EVENT_SHOT_PUT.getName()));
