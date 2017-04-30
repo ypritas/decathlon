@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class CalculatePlacesTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"35.81");
         events.put(Event.EVENT_1500M.getName(),"5.25.72");
         athlete.setEvents(events);
-        athlete.setTotalPoints(4200);
+        athlete.setTotalPoints(new BigDecimal(4200));
         result.put(athlete.getName(), athlete);
         athlete = new Athlete();
         athlete.setName("Beata Kana");
@@ -47,7 +48,7 @@ public class CalculatePlacesTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"28.20");
         events.put(Event.EVENT_1500M.getName(),"6.50.76");
         athlete.setEvents(events);
-        athlete.setTotalPoints(3199);
+        athlete.setTotalPoints(new BigDecimal(3199));
         result.put(athlete.getName(), athlete);
         athlete = new Athlete();
         athlete.setName("Jaana Lind");
@@ -63,7 +64,7 @@ public class CalculatePlacesTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"33.88");
         events.put(Event.EVENT_1500M.getName(),"6.22.75");
         athlete.setEvents(events);
-        athlete.setTotalPoints(3494);
+        athlete.setTotalPoints(new BigDecimal(3494));
         result.put(athlete.getName(), athlete);
         athlete = new Athlete();
         athlete.setName("Anti Loop");
@@ -79,7 +80,7 @@ public class CalculatePlacesTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"33.48");
         events.put(Event.EVENT_1500M.getName(),"6.51.01");
         athlete.setEvents(events);
-        athlete.setTotalPoints(3099);
+        athlete.setTotalPoints(new BigDecimal(3099));
         result.put(athlete.getName(), athlete);
         athlete = new Athlete();
         athlete.setName("Antanas Antanukas");
@@ -95,7 +96,7 @@ public class CalculatePlacesTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"33.48");
         events.put(Event.EVENT_1500M.getName(),"6.51.01");
         athlete.setEvents(events);
-        athlete.setTotalPoints(3441);
+        athlete.setTotalPoints(new BigDecimal(3441));
         result.put(athlete.getName(), athlete);
         athlete = new Athlete();
         athlete.setName("Antanas AntanukasNew");
@@ -111,7 +112,7 @@ public class CalculatePlacesTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"33.48");
         events.put(Event.EVENT_1500M.getName(),"6.51.01");
         athlete.setEvents(events);
-        athlete.setTotalPoints(3441);
+        athlete.setTotalPoints(new BigDecimal(3441));
         result.put(athlete.getName(), athlete);
     }
 

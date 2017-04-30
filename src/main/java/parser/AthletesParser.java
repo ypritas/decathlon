@@ -3,6 +3,7 @@ package parser;
 import data.Athlete;
 import data.Event;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -36,10 +37,10 @@ public class AthletesParser implements DecathlonDataParser {
         return result;
     }
 
-    private Integer getTotalPoints(Map<String, String> events) {
-        int totalPoints = 0;
+    private BigDecimal getTotalPoints(Map<String, String> events) {
+        BigDecimal totalPoints = BigDecimal.ZERO;
         for (Map.Entry<String, String> entry : events.entrySet()) {
-            totalPoints += Event.fromString(entry.getKey()).getPoints(entry.getValue());
+            totalPoints = totalPoints.add(Event.fromString(entry.getKey()).getPoints(entry.getValue()));
         }
         return totalPoints;
     }

@@ -1,12 +1,13 @@
 package data;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Athlete implements  Comparable<Athlete>{
     private String name;
     private Map<String, String> events = new LinkedHashMap<>();
-    private Integer totalPoints;
+    private BigDecimal totalPoints;
 
     public Map<String, String> getEvents() {
         return events;
@@ -24,11 +25,11 @@ public class Athlete implements  Comparable<Athlete>{
         this.name = name;
     }
 
-    public Integer getTotalPoints() {
+    public BigDecimal getTotalPoints() {
         return totalPoints;
     }
 
-    public void setTotalPoints(Integer totalPoints) {
+    public void setTotalPoints(BigDecimal totalPoints) {
         this.totalPoints = totalPoints;
     }
 

@@ -52,7 +52,7 @@ public class XMLExporter {
             entry.appendChild(participantName);
             Element place = createTextNode(doc, "place", eventParticipants.getValue());
             entry.appendChild(place);
-            Element participantTotalPoints = createTextNode(doc, "total_points", Integer.toString( source.get(eventParticipants.getKey()).getTotalPoints()));
+            Element participantTotalPoints = createTextNode(doc, "total_points", source.get(eventParticipants.getKey()).getTotalPoints().toString());
             entry.appendChild(participantTotalPoints);
             entry.appendChild(addEventsResults(source, doc, eventParticipants));
             participants.appendChild(entry);

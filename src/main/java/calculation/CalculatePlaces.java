@@ -2,6 +2,7 @@ package calculation;
 
 import data.Athlete;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class CalculatePlaces {
         return places;
     }
 
-    private static int checkCountSamePointsValue(Integer totalPoints, Map<String,Athlete> source) {
+    private static int checkCountSamePointsValue(BigDecimal totalPoints, Map<String, Athlete> source) {
         int count = 0;
         for (Map.Entry<String, Athlete> athlete : source.entrySet()) {
             if (athlete.getValue().getTotalPoints().compareTo(totalPoints) == 0) {
