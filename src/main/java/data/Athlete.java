@@ -5,32 +5,24 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Athlete implements Comparable<Athlete> {
-    private String name;
+    private final String name;
     private Map<String, String> events = new LinkedHashMap<>();
-    private BigDecimal totalPoints;
+    private final BigDecimal totalPoints;
+
+    public Athlete(String name, Map<String, String> events, BigDecimal totalPoints) {
+        this.name = name;
+        this.totalPoints = totalPoints;
+        this.events = events;
+    }
 
     public Map<String, String> getEvents() {
         return events;
     }
-
-    public void setEvents(Map<String, String> events) {
-        this.events = events;
-    }
-
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public BigDecimal getTotalPoints() {
         return totalPoints;
-    }
-
-    public void setTotalPoints(BigDecimal totalPoints) {
-        this.totalPoints = totalPoints;
     }
 
     @Override

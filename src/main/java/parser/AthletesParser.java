@@ -18,8 +18,6 @@ public class AthletesParser implements DecathlonDataParser {
         Map<String, Athlete> result = new HashMap<>();
         for (List<String> athleteEvents : data) {
             Map<String, String> events = new LinkedHashMap<>();
-            Athlete athlete = new Athlete();
-            athlete.setName(athleteEvents.get(NAME_POSITION));
             events.put(Event.EVENT_100M.getName(), athleteEvents.get(Event.EVENT_100M.getPosition()));
             events.put(Event.EVENT_LONG_JUMP.getName(), athleteEvents.get(Event.EVENT_LONG_JUMP.getPosition()));
             events.put(Event.EVENT_SHOT_PUT.getName(), athleteEvents.get(Event.EVENT_SHOT_PUT.getPosition()));
@@ -30,8 +28,7 @@ public class AthletesParser implements DecathlonDataParser {
             events.put(Event.EVENT_POLE_VAULT.getName(), athleteEvents.get(Event.EVENT_POLE_VAULT.getPosition()));
             events.put(Event.EVENT_JAVELIN_THROW.getName(), athleteEvents.get(Event.EVENT_JAVELIN_THROW.getPosition()));
             events.put(Event.EVENT_1500M.getName(), athleteEvents.get(Event.EVENT_1500M.getPosition()));
-            athlete.setEvents(events);
-            athlete.setTotalPoints(getTotalPoints(events));
+            Athlete athlete = new Athlete(athleteEvents.get(NAME_POSITION), events, getTotalPoints(events));
             result.put(athlete.getName(), athlete);
         }
         return result;
