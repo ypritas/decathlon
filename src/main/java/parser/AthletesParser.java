@@ -4,7 +4,7 @@ import data.Athlete;
 import data.Event;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +14,8 @@ public class AthletesParser implements DecathlonDataParser {
     private static final int NAME_POSITION = 0;
 
     @Override
-    public Map<String, Athlete> parseAthletes(List<List<String>> data) {
-        Map<String, Athlete> result = new HashMap<>();
+    public List<Athlete> parseAthletes(List<List<String>> data) {
+        List<Athlete> result = new ArrayList<>();
         for (List<String> athleteEvents : data) {
             Map<String, String> events = new LinkedHashMap<>();
             events.put(Event.EVENT_100M.getName(), athleteEvents.get(Event.EVENT_100M.getPosition()));
@@ -29,7 +29,7 @@ public class AthletesParser implements DecathlonDataParser {
             events.put(Event.EVENT_JAVELIN_THROW.getName(), athleteEvents.get(Event.EVENT_JAVELIN_THROW.getPosition()));
             events.put(Event.EVENT_1500M.getName(), athleteEvents.get(Event.EVENT_1500M.getPosition()));
             Athlete athlete = new Athlete(athleteEvents.get(NAME_POSITION), events, getTotalPoints(events));
-            result.put(athlete.getName(), athlete);
+            result.add(athlete);
         }
         return result;
     }

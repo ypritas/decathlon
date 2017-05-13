@@ -11,7 +11,6 @@ import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 public class Decathlon {
 
@@ -33,7 +32,7 @@ public class Decathlon {
         try {
             File inputDataFile = new File(args[0]);
             List<List<String>> result = new CSVReader().loadFile(inputDataFile.getAbsolutePath());
-            Map<String, Athlete> calculatedData = new AthletesParser().parseAthletes(result);
+            List<Athlete> calculatedData = new AthletesParser().parseAthletes(result);
             new XMLExporter().convertMapToXML(calculatedData, args[1], PlaceCalculator.getPlaces(calculatedData));
         } catch (IOException|TransformerException|ParserConfigurationException ioe) {
             System.out.println(ioe.getMessage());

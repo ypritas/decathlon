@@ -14,13 +14,15 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class XMLExporter {
 
     private static final String STYLE_FILE_NAME = "style.xsl";
 
-    public void convertMapToXML(Map<String, Athlete> source, String xmlFileName, Map<String, String> places) throws TransformerException, ParserConfigurationException {
+    public void convertMapToXML(List<Athlete> source, String xmlFileName, Map<String, String> places) throws TransformerException, ParserConfigurationException {
         try {
             Document doc = createXMLHeader();
             Element rootElement = doc.createElement("competition");
@@ -44,24 +46,28 @@ public class XMLExporter {
         }
     }
 
-    private void fillXMLWithParticipantsInfo(Map<String, Athlete> source, Map<String, String> places, Document doc, Element rootElement, Element participants) {
-        for (Map.Entry<String, String> eventParticipants : places.entrySet()) {
+    private void fillXMLWithParticipantsInfo(List<Athlete> source, Map<String, String> places, Document doc, Element rootElement, Element participants) {
+        for (Map.Entry<String, String> participant : places.entrySet()) {
             Element entry = doc.createElement("entry");
             rootElement.appendChild(participants);
-            Element participantName = createTextNode(doc, "name", source.get(eventParticipants.getKey()).getName());
+            Element participantName = createTextNode(doc, "name", participant.getKey());
             entry.appendChild(participantName);
-            Element place = createTextNode(doc, "place", eventParticipants.getValue());
+            Element place = createTextNode(doc, "place", participant.getValue());
             entry.appendChild(place);
-            Element participantTotalPoints = createTextNode(doc, "total_points", source.get(eventParticipants.getKey()).getTotalPoints().toString());
-            entry.appendChild(participantTotalPoints);
-            entry.appendChild(addEventsResults(source, doc, eventParticipants));
-            participants.appendChild(entry);
+            Optional<Athlete> winnerAthlete = source.stream().filter(athlete -> athlete.getName()
+                    .equals(participant.getKey())).findFirst();
+            if (winnerAthlete.isPresent()) {
+                Element participantTotalPoints = createTextNode(doc, "total_points", winnerAthlete.get().getTotalPoints().toString());
+                entry.appendChild(participantTotalPoints);
+                entry.appendChild(addEventsResults(winnerAthlete.get(), doc));
+                participants.appendChild(entry);
+            }
         }
     }
 
-    private Element addEventsResults(Map<String, Athlete> source, Document doc, Map.Entry<String, String> eventParticipants) {
+    private Element addEventsResults(Athlete winnerAthlete, Document doc) {
         Element events = doc.createElement("events");
-        source.get(eventParticipants.getKey()).getEvents()
+        winnerAthlete.getEvents()
                 .forEach((key, value) -> events.appendChild(createTextNode(doc, key, value)));
         return events;
     }
