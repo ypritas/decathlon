@@ -2,7 +2,6 @@ package parser;
 
 import data.Athlete;
 import data.Event;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +10,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class AthletesParserTest {
 
@@ -91,18 +92,18 @@ public class AthletesParserTest {
     @Test
     public void loadAthletes () {
         Map<String, Athlete> result = new AthletesParser().parseAthletes(data);
-        Assert.assertEquals(5, result.size());
-        Assert.assertEquals(10, result.get("Siim Susi").getEvents().size());
-        Assert.assertEquals("12.61", result.get("Siim Susi").getEvents().get(Event.EVENT_100M.getName()));
-        Assert.assertEquals("5.00", result.get("Siim Susi").getEvents().get(Event.EVENT_LONG_JUMP.getName()));
-        Assert.assertEquals("9.22", result.get("Siim Susi").getEvents().get(Event.EVENT_SHOT_PUT.getName()));
-        Assert.assertEquals("1.50", result.get("Siim Susi").getEvents().get(Event.EVENT_HIGH_JUMP.getName()));
-        Assert.assertEquals("60.39", result.get("Siim Susi").getEvents().get(Event.EVENT_400M.getName()));
-        Assert.assertEquals("16.43", result.get("Siim Susi").getEvents().get(Event.EVENT_110M_HURDLES.getName()));
-        Assert.assertEquals("21.60", result.get("Siim Susi").getEvents().get(Event.EVENT_DISCUS_THROW.getName()));
-        Assert.assertEquals("2.60", result.get("Siim Susi").getEvents().get(Event.EVENT_POLE_VAULT.getName()));
-        Assert.assertEquals("35.81", result.get("Siim Susi").getEvents().get(Event.EVENT_JAVELIN_THROW.getName()));
-        Assert.assertEquals("5.25.72", result.get("Siim Susi").getEvents().get(Event.EVENT_1500M.getName()));
-        Assert.assertEquals(new BigDecimal(4200), result.get("Siim Susi").getTotalPoints());
+        assertEquals(5, result.size());
+        assertEquals(10, result.get("Siim Susi").getEvents().size());
+        assertEquals("12.61", result.get("Siim Susi").getEvents().get(Event.EVENT_100M.getName()));
+        assertEquals("5.00", result.get("Siim Susi").getEvents().get(Event.EVENT_LONG_JUMP.getName()));
+        assertEquals("9.22", result.get("Siim Susi").getEvents().get(Event.EVENT_SHOT_PUT.getName()));
+        assertEquals("1.50", result.get("Siim Susi").getEvents().get(Event.EVENT_HIGH_JUMP.getName()));
+        assertEquals("60.39", result.get("Siim Susi").getEvents().get(Event.EVENT_400M.getName()));
+        assertEquals("16.43", result.get("Siim Susi").getEvents().get(Event.EVENT_110M_HURDLES.getName()));
+        assertEquals("21.60", result.get("Siim Susi").getEvents().get(Event.EVENT_DISCUS_THROW.getName()));
+        assertEquals("2.60", result.get("Siim Susi").getEvents().get(Event.EVENT_POLE_VAULT.getName()));
+        assertEquals("35.81", result.get("Siim Susi").getEvents().get(Event.EVENT_JAVELIN_THROW.getName()));
+        assertEquals("5.25.72", result.get("Siim Susi").getEvents().get(Event.EVENT_1500M.getName()));
+        assertEquals(new BigDecimal(4200), result.get("Siim Susi").getTotalPoints());
     }
 }

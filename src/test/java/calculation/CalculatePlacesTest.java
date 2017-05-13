@@ -2,7 +2,6 @@ package calculation;
 
 import data.Athlete;
 import data.Event;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +10,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class CalculatePlacesTest {
 
@@ -119,13 +120,13 @@ public class CalculatePlacesTest {
     @Test
     public void getPlacesTest() {
         Map<String, String> places = CalculatePlaces.getPlaces(result);
-        Assert.assertEquals(6, result.size());
-        Assert.assertEquals("1",  places.get("Siim Susi"));
-        Assert.assertEquals("3",  places.get("Jaana Lind"));
-        Assert.assertEquals("5-6",  places.get("Antanas Antanukas"));
-        Assert.assertEquals("5-6",  places.get("Antanas AntanukasNew"));
-        Assert.assertEquals("2",  places.get("Beata Kana"));
-        Assert.assertEquals("4",  places.get("Anti Loop"));
+        assertEquals(6, result.size());
+        assertEquals("1", places.get("Siim Susi"));
+        assertEquals("3", places.get("Jaana Lind"));
+        assertEquals("5-6", places.get("Antanas Antanukas"));
+        assertEquals("5-6", places.get("Antanas AntanukasNew"));
+        assertEquals("2", places.get("Beata Kana"));
+        assertEquals("4", places.get("Anti Loop"));
     }
 
 }

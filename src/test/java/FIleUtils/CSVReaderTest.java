@@ -1,13 +1,15 @@
 package FIleUtils;
 
 import FileUtils.CSVReader;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class CSVReaderTest {
 
@@ -22,8 +24,8 @@ public class CSVReaderTest {
     @Test
     public void loadFileTest() throws IOException {
         List<List<String>> result = new CSVReader().loadFile(file.getAbsolutePath());
-        Assert.assertFalse(result.isEmpty());
-        Assert.assertEquals(5, result.size());
-        Assert.assertEquals(11, result.get(0).size());
+        assertFalse(result.isEmpty());
+        assertEquals(5, result.size());
+        assertEquals(11, result.get(0).size());
     }
 }

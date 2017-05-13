@@ -61,10 +61,7 @@ public class XMLExporter {
 
     private Element addEventsResults(Map<String, Athlete> source, Document doc, Map.Entry<String, String> eventParticipants) {
         Element events = doc.createElement("events");
-        for (Map.Entry<String, String> participant : source.get(eventParticipants.getKey()).getEvents().entrySet()) {
-            Element eventPerformance = createTextNode(doc, participant.getKey(), participant.getValue() );
-            events.appendChild(eventPerformance);
-        }
+        source.get(eventParticipants.getKey()).getEvents().forEach((key, value) -> events.appendChild(createTextNode(doc, key, value)));
         return events;
     }
 
