@@ -86,8 +86,6 @@ public class AthletesParserTest {
         data.add(events);
     }
 
-
-
     @Test
     public void loadAthletes () {
         List<Athlete> result = new AthletesParser().parseAthletes(data);

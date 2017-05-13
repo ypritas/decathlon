@@ -13,18 +13,18 @@ public class PlaceCalculator {
         int excludeLastOne = 1;
         Map<String, Athlete> sortedMap = new LinkedHashMap<>();
         source.stream()
-                .sorted((e1, e2) -> e1.compareTo(e2))
+                .sorted((a1, a2) -> a1.compareTo(a2))
                 .forEachOrdered(x -> sortedMap.put(x.getName(), x));
         Map<String, String> places = new LinkedHashMap<>();
-        int place = 1;
-        int startPlace = place;
+        long place = 1;
+        long startPlace = place;
         for (Athlete athlete : source) {
-            int samePlacesCount = checkCountSamePointsValue(athlete.getTotalPoints(), source);
+            long samePlacesCount = checkCountSamePointsValue(athlete.getTotalPoints(), source);
             if (samePlacesCount > 1) {
-                places.put(athlete.getName(), Integer.toString(startPlace) + "-" + (startPlace + samePlacesCount - excludeLastOne));
+                places.put(athlete.getName(), Long.toString(startPlace) + "-" + (startPlace + samePlacesCount - excludeLastOne));
                 place= startPlace + samePlacesCount;
             } else {
-                places.put(athlete.getName(), Integer.toString(place));
+                places.put(athlete.getName(), Long.toString(place));
                 place++;
                 startPlace = place;
             }
@@ -32,14 +32,8 @@ public class PlaceCalculator {
         return places;
     }
 
-    private static int checkCountSamePointsValue(BigDecimal totalPoints, List<Athlete> source) {
-        int count = 0;
-        for (Athlete athlete : source) {
-            if (athlete.getTotalPoints().compareTo(totalPoints) == 0) {
-                count++;
-            }
-        }
-        return count;
+    private static long checkCountSamePointsValue(BigDecimal totalPoints, List<Athlete> source) {
+        return source.stream().filter(athlete -> athlete.getTotalPoints().compareTo(totalPoints) == 0).count();
     }
 
 }
