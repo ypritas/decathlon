@@ -1,9 +1,9 @@
 package decathlon;
 
-import FileUtils.CSVReader;
-import calculation.CalculatePlaces;
+import calculation.PlaceCalculator;
 import converter.XMLExporter;
 import data.Athlete;
+import fileutils.CSVReader;
 import parser.AthletesParser;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,7 +34,7 @@ public class Decathlon {
             File inputDataFile = new File(args[0]);
             List<List<String>> result = new CSVReader().loadFile(inputDataFile.getAbsolutePath());
             Map<String, Athlete> calculatedData = new AthletesParser().parseAthletes(result);
-            new XMLExporter().convertMapToXML(calculatedData, args[1], CalculatePlaces.getPlaces(calculatedData));
+            new XMLExporter().convertMapToXML(calculatedData, args[1], PlaceCalculator.getPlaces(calculatedData));
         } catch (IOException|TransformerException|ParserConfigurationException ioe) {
             System.out.println(ioe.getMessage());
         }

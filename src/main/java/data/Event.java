@@ -22,18 +22,18 @@ public enum Event {
     private static final int SECONDS_IN_MINUTE = 60;
     private static final int MIILISECONDS_IN_SECOND = 100;
     private final int position;
-    private String name = "";
-    private final BigDecimal aIndex;
-    private final BigDecimal bIndex;
-    private final BigDecimal cIndex;
+    private String name;
+    private final BigDecimal firstIndex;
+    private final BigDecimal secondIndex;
+    private final BigDecimal thirdIndex;
     private final EventType type;
     private final MeasurementType measurementType;
 
-    Event(int position, String name, BigDecimal aIndex, BigDecimal bIndex, BigDecimal cIndex, EventType type, MeasurementType measurementType) {
+    Event(int position, String name, BigDecimal firstIndex, BigDecimal secondIndex, BigDecimal thirdIndex, EventType type, MeasurementType measurementType) {
         this.position = position;
-        this.aIndex = aIndex;
-        this.bIndex = bIndex;
-        this.cIndex = cIndex;
+        this.firstIndex = firstIndex;
+        this.secondIndex = secondIndex;
+        this.thirdIndex = thirdIndex;
         this.type = type;
         this.name = name;
         this.measurementType = measurementType;
@@ -42,9 +42,9 @@ public enum Event {
     public BigDecimal getPoints(String timeOrDistance) {
         try {
             if (type == EventType.Track) {
-                return aIndex.multiply(new BigDecimal(Math.pow(bIndex.subtract(parsePerformance(timeOrDistance, measurementType)).doubleValue(), cIndex.doubleValue()))).setScale(0, BigDecimal.ROUND_DOWN);
+                return firstIndex.multiply(new BigDecimal(Math.pow(secondIndex.subtract(parsePerformance(timeOrDistance, measurementType)).doubleValue(), thirdIndex.doubleValue()))).setScale(0, BigDecimal.ROUND_DOWN);
             } else {
-                return aIndex.multiply(new BigDecimal(Math.pow(parsePerformance(timeOrDistance, measurementType).subtract(bIndex).doubleValue(), cIndex.doubleValue()))).setScale(0, BigDecimal.ROUND_DOWN);
+                return firstIndex.multiply(new BigDecimal(Math.pow(parsePerformance(timeOrDistance, measurementType).subtract(secondIndex).doubleValue(), thirdIndex.doubleValue()))).setScale(0, BigDecimal.ROUND_DOWN);
             }
         } catch (NumberFormatException wrongNumber) {
             return BigDecimal.ZERO;

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Athlete implements  Comparable<Athlete>{
+public class Athlete implements Comparable<Athlete> {
     private String name;
     private Map<String, String> events = new LinkedHashMap<>();
     private BigDecimal totalPoints;

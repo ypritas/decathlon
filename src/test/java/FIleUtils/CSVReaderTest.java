@@ -1,6 +1,6 @@
 package FIleUtils;
 
-import FileUtils.CSVReader;
+import fileutils.CSVReader;
 import org.junit.Before;
 import org.junit.Test;
 

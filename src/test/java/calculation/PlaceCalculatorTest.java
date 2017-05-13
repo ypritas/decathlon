@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class CalculatePlacesTest {
+public class PlaceCalculatorTest {
 
     private Map<String, Athlete> result = new LinkedHashMap<>();
 
@@ -119,7 +119,7 @@ public class CalculatePlacesTest {
 
     @Test
     public void getPlacesTest() {
-        Map<String, String> places = CalculatePlaces.getPlaces(result);
+        Map<String, String> places = PlaceCalculator.getPlaces(result);
         assertEquals(6, result.size());
         assertEquals("1", places.get("Siim Susi"));
         assertEquals("3", places.get("Jaana Lind"));

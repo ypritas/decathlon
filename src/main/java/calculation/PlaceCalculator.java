@@ -6,11 +6,10 @@ import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class CalculatePlaces {
-
-    private static final int EXCLUDE_LAST_ONE = 1;
+public class PlaceCalculator {
 
     public static Map<String, String> getPlaces(Map<String,Athlete> source) {
+        int excludeLastOne = 1;
         Map<String, Athlete> sortedMap = new LinkedHashMap<>();
         source.entrySet().stream()
                 .sorted(Map.Entry.<String, Athlete>comparingByValue().reversed())
@@ -21,7 +20,7 @@ public class CalculatePlaces {
         for (Map.Entry<String, Athlete> athlete : source.entrySet()) {
             int samePlacesCount = checkCountSamePointsValue(athlete.getValue().getTotalPoints(), source);
             if (samePlacesCount > 1) {
-                places.put(athlete.getKey(), Integer.toString(startPlace) + "-" + (startPlace + samePlacesCount - EXCLUDE_LAST_ONE));
+                places.put(athlete.getKey(), Integer.toString(startPlace) + "-" + (startPlace + samePlacesCount - excludeLastOne));
                 place= startPlace + samePlacesCount;
             } else {
                 places.put(athlete.getKey(), Integer.toString(place));

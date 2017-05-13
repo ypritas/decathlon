@@ -1,4 +1,4 @@
-package FileUtils;
+package fileutils;
 
 import java.io.IOException;
 import java.util.List;
