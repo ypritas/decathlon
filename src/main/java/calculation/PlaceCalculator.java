@@ -3,6 +3,7 @@ package calculation;
 import data.Athlete;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,8 @@ public class PlaceCalculator {
         int excludeLastOne = 1;
         Map<String, Athlete> sortedMap = new LinkedHashMap<>();
         source.stream()
-                .sorted((a1, a2) -> a1.compareTo(a2))
-                .forEachOrdered(x -> sortedMap.put(x.getName(), x));
+                .sorted(Comparator.naturalOrder())
+                .forEachOrdered(athlete -> sortedMap.put(athlete.getName(), athlete));
         Map<String, String> places = new LinkedHashMap<>();
         long place = 1;
         long startPlace = place;
