@@ -14,7 +14,7 @@ public class PlaceCalculator {
         long startPlace = place;
         for (Athlete athlete : source) {
             long samePlacesCount = source.stream()
-                    .filter(participant -> athlete.getTotalPoints().compareTo(athlete.getTotalPoints()) == 0).count();
+                    .filter(participant -> participant.compareTo(athlete) == 0).count();
             if (samePlacesCount > 1) {
                 int excludeLastOne = 1;
                 places.put(athlete.getName(), startPlace + "-" + (startPlace + samePlacesCount - excludeLastOne));

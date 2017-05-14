@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 public enum Event {
     EVENT_100M(1, "_100_m", new BigDecimal(25.4347), new BigDecimal(18), new BigDecimal(1.81), EventType.Track, MeasurementType.Seconds),
@@ -79,15 +81,8 @@ public enum Event {
         return name;
     }
 
-    public static Event fromString(String name) {
-        if (name != null) {
-            for (Event event : Event.values()) {
-                if (name.equalsIgnoreCase(event.name)) {
-                    return event;
-                }
-            }
-        }
-        return null;
+    public static Optional<Event> fromString(String name) {
+        return Arrays.stream(Event.values()).filter(a -> a.getName().equalsIgnoreCase(name)).findFirst();
     }
 
 }
