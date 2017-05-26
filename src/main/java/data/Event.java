@@ -54,7 +54,7 @@ public enum Event {
     }
 
     private BigDecimal parsePerformance(String timeOrDistance, MeasurementType measurementType) {
-        if (measurementType == MeasurementType.MinutesAndSeconds || measurementType == MeasurementType.Seconds) {
+        if (measurementType == MeasurementType.MinutesAndSeconds) {
             DateFormat formatter = new SimpleDateFormat(measurementType.getFormat());
             try {
                 Date dt = formatter.parse(timeOrDistance);
@@ -64,6 +64,8 @@ public enum Event {
             } catch (ParseException e) {
                 return BigDecimal.ZERO;
             }
+        } else if (measurementType == MeasurementType.Seconds) {
+            return new BigDecimal(timeOrDistance);
         } else {
             return new BigDecimal(Float.parseFloat(timeOrDistance) * measurementType.getMultiplier());
         }

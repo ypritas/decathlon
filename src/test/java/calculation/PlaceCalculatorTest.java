@@ -102,11 +102,11 @@ public class PlaceCalculatorTest {
         Map<String, String> places = PlaceCalculator.getPlaces(result);
         assertEquals(6, result.size());
         assertEquals("1", places.get("Siim Susi"));
-        assertEquals("3", places.get("Jaana Lind"));
-        assertEquals("5-6", places.get("Antanas Antanukas"));
-        assertEquals("5-6", places.get("Antanas AntanukasNew"));
-        assertEquals("2", places.get("Beata Kana"));
-        assertEquals("4", places.get("Anti Loop"));
+        assertEquals("2", places.get("Jaana Lind"));
+        assertEquals("3-4", places.get("Antanas Antanukas"));
+        assertEquals("3-4", places.get("Antanas AntanukasNew"));
+        assertEquals("5", places.get("Beata Kana"));
+        assertEquals("6", places.get("Anti Loop"));
     }
 
 }

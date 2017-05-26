@@ -25,12 +25,8 @@ public class XMLExporter {
     public void convertMapToXML(List<Athlete> source, String xmlFileName, Map<String, String> places) throws TransformerException, ParserConfigurationException {
         try {
             Document doc = createXMLHeader();
-            Element rootElement = doc.createElement("competition");
-            doc.appendChild(rootElement);
-
-            Element participants = doc.createElement("participants");
-            rootElement.appendChild(participants);
-
+            Element rootElement = createCompetition(doc);
+            Element participants = createParticipants(doc, rootElement);
             fillXMLWithParticipantsInfo(source, places, doc, rootElement, participants);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -44,6 +40,18 @@ public class XMLExporter {
         } catch (TransformerException tfe) {
             throw new TransformerException("Failed to write data file " + xmlFileName);
         }
+    }
+
+    private Element createParticipants(Document doc, Element rootElement) {
+        Element participants = doc.createElement("participants");
+        rootElement.appendChild(participants);
+        return participants;
+    }
+
+    private Element createCompetition(Document doc) {
+        Element rootElement = doc.createElement("competition");
+        doc.appendChild(rootElement);
+        return rootElement;
     }
 
     private void fillXMLWithParticipantsInfo(List<Athlete> source, Map<String, String> places, Document doc, Element rootElement, Element participants) {
