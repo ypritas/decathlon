@@ -40,10 +40,6 @@ public class AthletesParser implements DecathlonDataParser {
     }
 
     private BigDecimal getTotalPoints(Map<String, String> events) {
-        BigDecimal totalPoints = BigDecimal.ZERO;
-        for (Map.Entry<String, String> entry : events.entrySet()) {
-            totalPoints = totalPoints.add(Event.fromString(entry.getKey()).get().getPoints(entry.getValue()));
-        }
-        return totalPoints;
+        return events.entrySet().stream().map(e -> Event.fromString(e.getKey()).get().getPoints(e.getValue())).reduce(BigDecimal.ZERO, (x, y) -> x.add(y));
     }
 }

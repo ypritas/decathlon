@@ -23,7 +23,7 @@ public class PlaceCalculator {
         for (Map.Entry<BigDecimal, List<Athlete>> entry : sortedByPoints.entrySet()) {
             if (entry.getValue().size() > 1) {
                 int excludeLastOne = 1;
-                String competitorsPlace = startPlace + "-" + (startPlace + entry.getValue().size() - excludeLastOne);
+                String competitorsPlace = formatCompetitorPlaceValue(startPlace, entry, excludeLastOne);
                 places.putAll(entry.getValue().stream().collect(Collectors.toMap(Athlete::getName, c -> competitorsPlace)));
                 place = startPlace + entry.getValue().size();
             } else {
@@ -32,5 +32,9 @@ public class PlaceCalculator {
             }
         }
         return places;
+    }
+
+    private static String formatCompetitorPlaceValue(long startPlace, Map.Entry<BigDecimal, List<Athlete>> entry, int excludeLastOne) {
+        return startPlace + "-" + (startPlace + entry.getValue().size() - excludeLastOne);
     }
 }
