@@ -3,10 +3,10 @@ package parser;
 import data.Athlete;
 import data.Event;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AthletesParser implements DecathlonDataParser {
 
@@ -14,13 +14,7 @@ public class AthletesParser implements DecathlonDataParser {
 
     @Override
     public List<Athlete> parseAthletes(List<List<String>> data) {
-        List<Athlete> result = new ArrayList<>();
-        for (List<String> athleteEvents : data) {
-            Map<String, String> events = parseEvents(athleteEvents);
-            Athlete athlete = new Athlete(athleteEvents.get(NAME_POSITION), events);
-            result.add(athlete);
-        }
-        return result;
+        return data.stream().map(athleteData -> new Athlete(athleteData.get(NAME_POSITION), parseEvents(athleteData))).collect(Collectors.toList());
     }
 
     private Map<String, String> parseEvents(List<String> athleteEvents) {
