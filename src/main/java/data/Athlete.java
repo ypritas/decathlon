@@ -7,11 +7,9 @@ import java.util.Map;
 public class Athlete implements Comparable<Athlete> {
     private final String name;
     private Map<String, String> events = new LinkedHashMap<>();
-    private final BigDecimal totalPoints;
 
-    public Athlete(String name, Map<String, String> events, BigDecimal totalPoints) {
+    public Athlete(String name, Map<String, String> events) {
         this.name = name;
-        this.totalPoints = totalPoints;
         this.events = events;
     }
 
@@ -21,12 +19,13 @@ public class Athlete implements Comparable<Athlete> {
     public String getName() {
         return name;
     }
-    public BigDecimal getTotalPoints() {
-        return totalPoints;
-    }
 
     @Override
     public int compareTo(Athlete a) {
         return getTotalPoints().compareTo(a.getTotalPoints());
+    }
+
+    public BigDecimal getTotalPoints() {
+        return events.entrySet().stream().map(e -> Event.fromString(e.getKey()).get().getPoints(e.getValue())).reduce(BigDecimal.ZERO, (x, y) -> x.add(y));
     }
 }

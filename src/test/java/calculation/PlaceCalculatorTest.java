@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -28,7 +27,7 @@ public class PlaceCalculatorTest {
         events.put(Event.EVENT_POLE_VAULT.getName(),"2.60");
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"35.81");
         events.put(Event.EVENT_1500M.getName(),"5.25.72");
-        Athlete athlete = new Athlete("Siim Susi", events, new BigDecimal(4200));
+        Athlete athlete = new Athlete("Siim Susi", events);
         events = new LinkedHashMap<>();
         events.put(Event.EVENT_100M.getName(), "13.04");
         events.put(Event.EVENT_LONG_JUMP.getName(), "4.53");
@@ -41,7 +40,7 @@ public class PlaceCalculatorTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(), "28.20");
         events.put(Event.EVENT_1500M.getName(), "6.50.76");
         result.add(athlete);
-        athlete = new Athlete("Beata Kana", events, new BigDecimal(3199));
+        athlete = new Athlete("Beata Kana", events);
         events = new LinkedHashMap<>();
         events.put(Event.EVENT_100M.getName(), "13.75");
         events.put(Event.EVENT_LONG_JUMP.getName(), "4.84");
@@ -54,7 +53,7 @@ public class PlaceCalculatorTest {
         events.put(Event.EVENT_JAVELIN_THROW.getName(), "33.88");
         events.put(Event.EVENT_1500M.getName(), "6.22.75");
         result.add(athlete);
-        athlete = new Athlete("Jaana Lind", events, new BigDecimal(3494));
+        athlete = new Athlete("Jaana Lind", events);
         result.add(athlete);
         events = new LinkedHashMap<>();
         events.put(Event.EVENT_100M.getName(), "13.43");
@@ -67,7 +66,7 @@ public class PlaceCalculatorTest {
         events.put(Event.EVENT_POLE_VAULT.getName(),"2.20");
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"33.48");
         events.put(Event.EVENT_1500M.getName(),"6.51.01");
-        athlete = new Athlete("Anti Loop", events, new BigDecimal(3099));
+        athlete = new Athlete("Anti Loop", events);
         result.add(athlete);
         events = new LinkedHashMap<>();
         events.put(Event.EVENT_100M.getName(), "20.00");
@@ -80,7 +79,7 @@ public class PlaceCalculatorTest {
         events.put(Event.EVENT_POLE_VAULT.getName(),"2.20");
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"33.48");
         events.put(Event.EVENT_1500M.getName(),"6.51.01");
-        athlete = new Athlete("Antanas Antanukas", events, new BigDecimal(3441));
+        athlete = new Athlete("Antanas Antanukas", events);
         result.add(athlete);
         events = new LinkedHashMap<>();
         events.put(Event.EVENT_100M.getName(), "20.00");
@@ -93,7 +92,7 @@ public class PlaceCalculatorTest {
         events.put(Event.EVENT_POLE_VAULT.getName(),"2.20");
         events.put(Event.EVENT_JAVELIN_THROW.getName(),"33.48");
         events.put(Event.EVENT_1500M.getName(),"6.51.01");
-        athlete = new Athlete("Antanas AntanukasNew", events, new BigDecimal(3441));
+        athlete = new Athlete("Antanas AntanukasNew", events);
         result.add(athlete);
     }
 
@@ -103,10 +102,10 @@ public class PlaceCalculatorTest {
         assertEquals(6, result.size());
         assertEquals("1", places.get("Siim Susi"));
         assertEquals("2", places.get("Jaana Lind"));
-        assertEquals("3-4", places.get("Antanas Antanukas"));
-        assertEquals("3-4", places.get("Antanas AntanukasNew"));
-        assertEquals("5", places.get("Beata Kana"));
-        assertEquals("6", places.get("Anti Loop"));
+        assertEquals("5-6", places.get("Antanas Antanukas"));
+        assertEquals("5-6", places.get("Antanas AntanukasNew"));
+        assertEquals("3", places.get("Beata Kana"));
+        assertEquals("4", places.get("Anti Loop"));
     }
 
 }
